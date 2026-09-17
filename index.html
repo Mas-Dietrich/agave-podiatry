@@ -1,0 +1,1081 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0B1526">
+  <title>Agave Foot &amp; Ankle Surgeons &mdash; Homepage Prototype</title>
+  <meta name="description" content="Prototype for review. Foot and ankle surgeons in Phoenix and Maricopa, Arizona.">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&amp;family=Manrope:wght@400;500;600;700&amp;family=Bodoni+Moda:opsz,wght@6..96,400&amp;display=swap">
+  <style>
+    html { scroll-behavior: smooth; }
+    body { margin: 0; font-family: 'Manrope', 'Helvetica Neue', Helvetica, sans-serif; background: #FAF8F4; color: #0B1526; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; }
+    * { box-sizing: border-box; }
+
+    /* ---------- Tokens ---------- */
+    .agv { --gold: #B8925A; --gold-ink: #7A5C2E; --navy: #0B1526; --navy-2: #111E33; --ink: #070E1A; --ivory: #F4EFE6; --paper: #FAF8F4; --mute: #4A5261; --soft: #B9C0CB; --line: #E3DCCF; --gline: rgba(184,146,90,0.22);
+      --ease: cubic-bezier(.2,.7,.2,1); --rise: 28px; --par: 0.06; --sy: 0; --sp: 0;
+      min-height: 100vh; display: flex; flex-direction: column; background: var(--paper); color: var(--navy); }
+    .agv.m-exp { --rise: 56px; --par: 0.14; }
+    .page { container: page / inline-size; flex-grow: 1; display: flex; flex-direction: column; }
+    .page > * { --px: 64px; }
+    .h { font-family: 'Outfit', 'Helvetica Neue', Helvetica, sans-serif; font-weight: 400; letter-spacing: -0.02em; }
+    .logo { font-family: 'Bodoni Moda', Didot, 'Bodoni 72', Georgia, serif; font-weight: 400; }
+    .eyebrow { font-family: 'Outfit', 'Helvetica Neue', sans-serif; font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500; display: flex; align-items: center; gap: 14px; margin: 0; }
+    .ph { background: #16233A; border: 1px dashed rgba(184,146,90,0.45); color: #A9B1BF; font-size: 13px; line-height: 1.5; display: flex; align-items: center; justify-content: center; text-align: center; padding: 24px; border-radius: 8px; }
+    .ph-light { background: #E9E3D8; border: 1px dashed #B9AE9C; color: #4A5261; font-size: 13px; line-height: 1.5; display: flex; align-items: center; justify-content: center; text-align: center; padding: 16px; border-radius: 8px; }
+    .skip { position: absolute; left: 16px; top: -60px; z-index: 100; background: var(--gold); color: var(--navy); padding: 12px 18px; border-radius: 8px; font-weight: 700; font-size: 14px; }
+    .skip:focus { top: 12px; }
+    :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 8px; }
+    .only-m { display: none !important; }
+    .agv svg[stroke="#B8925A"] { stroke: var(--gold); }
+    .agv svg[fill="#B8925A"] { fill: var(--gold); }
+    .util svg { color: var(--gold) !important; }
+    .hero .eyebrow, .quick .eyebrow, .imaging .eyebrow, #locations .eyebrow, .foot .eyebrow, .mnav .eyebrow, .fb-s { color: var(--gold) !important; }
+
+    /* ---------- Buttons & links ---------- */
+    .btn { height: 56px; display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 0 30px; border-radius: 8px; font-size: 16px; font-weight: 700; border: 1px solid transparent; cursor: pointer; white-space: nowrap;
+      transition: background-color .35s var(--ease), border-color .35s var(--ease), color .35s var(--ease), transform .35s var(--ease), box-shadow .35s var(--ease); }
+    .btn-sm { height: 44px; padding: 0 20px; font-size: 14px; gap: 8px; }
+    .btn-md { height: 48px; padding: 0 22px; font-size: 14px; }
+    .btn-gold { background: var(--gold); color: var(--navy); }
+    .btn-ghost { border-color: rgba(244,239,230,0.35); color: var(--ivory); font-weight: 600; }
+    .btn-navy { background: var(--navy); color: var(--ivory); }
+    .btn-line { border-color: var(--navy); color: var(--navy); font-weight: 600; }
+    .btn .arr, .tl .arr, .tile .arr { display: inline-block; transition: transform .35s var(--ease); }
+    .tl { font-size: 14px; font-weight: 700; color: var(--gold-ink); display: inline-flex; align-items: center; gap: 6px; }
+    .tl.on-dark { color: var(--gold); }
+    .tl .u { background-image: linear-gradient(currentColor, currentColor); background-size: 0% 1px; background-repeat: no-repeat; background-position: 0 100%; transition: background-size .45s var(--ease); padding-bottom: 2px; }
+    @media (hover: hover) {
+      .btn-gold:hover { background: #C9A46C; transform: translateY(-2px); box-shadow: 0 12px 28px rgba(184,146,90,0.28); }
+      .btn-ghost:hover { border-color: var(--gold); background: rgba(244,239,230,0.06); }
+      .btn-navy:hover { background: #16233A; transform: translateY(-2px); box-shadow: 0 12px 28px rgba(11,21,38,0.22); }
+      .btn-line:hover { background: var(--navy); color: var(--ivory); }
+      .btn:hover .arr, .tl:hover .arr { transform: translateX(4px); }
+      .tl:hover .u { background-size: 100% 1px; }
+    }
+    .btn:active { transform: translateY(0); box-shadow: none; }
+
+    /* ---------- Utility bar ---------- */
+    .util { height: 44px; background: var(--ink); color: #C9CFD9; display: flex; align-items: center; justify-content: space-between; padding: 0 var(--px); font-size: 13px; }
+    .util-g { display: flex; align-items: center; gap: 28px; }
+    .util a { display: inline-flex; align-items: center; gap: 8px; transition: color .3s var(--ease); }
+    .util strong { color: #FFFFFF; font-weight: 600; }
+    @media (hover: hover) { .util a:hover { color: var(--gold); } }
+
+    /* ---------- Header ---------- */
+    .hdr { position: sticky; top: 0; z-index: 40; height: 92px; margin-bottom: 0; background: var(--navy); border-bottom: 1px solid var(--gline); display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 0 var(--px);
+      transition: height .45s var(--ease), margin-bottom .45s var(--ease), background-color .45s var(--ease), box-shadow .45s var(--ease); }
+    .is-scrolled .hdr { height: 72px; margin-bottom: 20px; background: rgba(11,21,38,0.9); -webkit-backdrop-filter: saturate(140%) blur(14px); backdrop-filter: saturate(140%) blur(14px); box-shadow: 0 12px 32px rgba(0,0,0,0.18); }
+    .prog { position: absolute; left: 0; bottom: -1px; height: 1px; width: 100%; background: var(--gold); transform-origin: left center; transform: scaleX(var(--sp)); pointer-events: none; }
+    .m-off .prog { display: none; }
+    .brand { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
+    .brand svg { width: 52px; height: 52px; transition: width .45s var(--ease), height .45s var(--ease); }
+    .is-scrolled .brand svg { width: 42px; height: 42px; }
+    .brand-t { display: flex; flex-direction: column; gap: 3px; }
+    .brand-w { font-size: 30px; letter-spacing: 0.14em; color: var(--ivory); line-height: 1; transition: font-size .45s var(--ease); }
+    .is-scrolled .brand-w { font-size: 26px; }
+    .brand-s { font-size: 10px; letter-spacing: 0.3em; color: var(--gold); font-weight: 600; }
+    .nav { display: flex; align-items: center; gap: 36px; font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 500; }
+    .nl { position: relative; color: #E3E7ED; padding: 10px 0; transition: color .3s var(--ease); }
+    .nl::after { content: ''; position: absolute; left: 0; right: 0; bottom: 2px; height: 1px; background: var(--gold); transform: scaleX(0); transform-origin: left center; transition: transform .45s var(--ease); }
+    .nl.is-active { color: #FFFFFF; }
+    .nl.is-active::after { transform: scaleX(1); }
+    @media (hover: hover) { .nl:hover { color: #FFFFFF; } .nl:hover::after { transform: scaleX(1); } }
+    .hdr-a { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+    .ib { width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid rgba(244,239,230,0.3); border-radius: 8px; background: transparent; color: var(--ivory); cursor: pointer; transition: border-color .3s var(--ease), background-color .3s var(--ease); }
+    @media (hover: hover) { .ib:hover { border-color: var(--gold); background: rgba(244,239,230,0.06); } }
+    .menu-btn { display: none; }
+
+    /* ---------- Load choreography (hero, header, quick band) ---------- */
+    @keyframes up { from { opacity: 0; transform: translate3d(0, 24px, 0); } to { opacity: 1; transform: none; } }
+    @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes wordup { from { transform: translate3d(0, 110%, 0); } to { transform: none; } }
+    @keyframes wipe { from { clip-path: inset(0 100% 0 0 round 8px); } to { clip-path: inset(0 0 0 0 round 8px); } }
+    @keyframes line { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+    @keyframes slidein { from { opacity: 0; transform: translate3d(-28px, 0, 0); } to { opacity: 1; transform: none; } }
+    @keyframes draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+    @keyframes barup { from { transform: translate3d(0, 100%, 0); } to { transform: none; } }
+    .agv:not(.m-off) .ld-up { animation: up 1s var(--ease) both; animation-delay: var(--d, 0s); }
+    .agv:not(.m-off) .ld-fade { animation: fade 1.2s var(--ease) both; animation-delay: var(--d, 0s); }
+    .agv:not(.m-off) .ld-line { transform-origin: left center; animation: line 1s var(--ease) both; animation-delay: var(--d, 0s); }
+    .agv:not(.m-off) .ld-wipe { animation: wipe 1.4s var(--ease) both; animation-delay: var(--d, 0s); }
+    .agv:not(.m-off) .ld-slide { animation: slidein 1s var(--ease) both; animation-delay: var(--d, 0s); }
+    .draw circle, .draw path { stroke-dasharray: 1; stroke-dashoffset: 0; }
+    .agv:not(.m-off) .draw-ld circle, .agv:not(.m-off) .draw-ld path { animation: draw 2.2s var(--ease) both; }
+    .agv:not(.m-off) .draw-ld path:nth-of-type(1) { animation-delay: .15s; }
+    .agv:not(.m-off) .draw-ld path:nth-of-type(2), .agv:not(.m-off) .draw-ld path:nth-of-type(3) { animation-delay: .3s; }
+    .agv:not(.m-off) .draw-ld path:nth-of-type(4), .agv:not(.m-off) .draw-ld path:nth-of-type(5) { animation-delay: .45s; }
+    .agv:not(.m-off) .draw-ld path:nth-of-type(6), .agv:not(.m-off) .draw-ld path:nth-of-type(7) { animation-delay: .6s; }
+    .t1 { --d: .1s; } .t2 { --d: .2s; } .t3 { --d: .3s; } .t4 { --d: .45s; } .t5 { --d: .6s; } .t6 { --d: .75s; } .t7 { --d: .9s; } .t8 { --d: 1.05s; } .t9 { --d: 1.2s; }
+
+    /* ---------- Scroll reveals (JS adds .in) ---------- */
+    .rv { transition: opacity .9s var(--ease), transform .9s var(--ease), clip-path 1.2s var(--ease); transition-delay: var(--d, 0s); }
+    .m-ready:not(.m-off) .rv:not(.in) { opacity: 0; transform: translate3d(0, var(--rise), 0); }
+    .rv.clip { clip-path: inset(0 0 0 0 round 8px); }
+    .m-ready:not(.m-off) .rv.clip:not(.in) { opacity: 1; transform: none; clip-path: inset(0 0 100% 0 round 8px); }
+    .rv.grow { transform-origin: left center; }
+    .m-ready:not(.m-off) .rv.grow:not(.in) { opacity: 1; transform: scaleX(0); }
+    .draw-rv circle, .draw-rv path { transition: stroke-dashoffset 2s var(--ease) .2s; }
+    .m-ready:not(.m-off) .draw-rv:not(.in) circle, .m-ready:not(.m-off) .draw-rv:not(.in) path { stroke-dashoffset: 1; }
+    .d1 { --d: .08s; } .d2 { --d: .16s; } .d3 { --d: .24s; } .d4 { --d: .32s; } .d5 { --d: .40s; } .d6 { --d: .48s; }
+
+    /* ---------- Hero ---------- */
+    .hero { min-height: 700px; background: var(--navy); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); overflow: hidden; }
+    .hero-copy { display: flex; flex-direction: column; justify-content: center; gap: 30px; padding: 72px 72px 72px var(--px); }
+    .hero-rule { width: 40px; height: 1px; background: var(--gold); }
+    .h1 { margin: 0; font-size: 72px; line-height: 1.02; font-weight: 300; color: var(--ivory); display: flex; flex-wrap: wrap; column-gap: 0.24em; }
+    .hw { display: inline-flex; overflow: hidden; padding-bottom: 0.08em; margin-bottom: -0.08em; }
+    .hw > span { display: inline-block; }
+    .agv:not(.m-off) .hw > span { animation: wordup 1.1s var(--ease) both; }
+    .agv:not(.m-off) .hw:nth-child(1) > span { animation-delay: .20s; }
+    .agv:not(.m-off) .hw:nth-child(2) > span { animation-delay: .26s; }
+    .agv:not(.m-off) .hw:nth-child(3) > span { animation-delay: .32s; }
+    .agv:not(.m-off) .hw:nth-child(4) > span { animation-delay: .38s; }
+    .agv:not(.m-off) .hw:nth-child(5) > span { animation-delay: .44s; }
+    .agv:not(.m-off) .hw:nth-child(6) > span { animation-delay: .50s; }
+    .agv:not(.m-off) .hw:nth-child(7) > span { animation-delay: .56s; }
+    .agv:not(.m-off) .hw:nth-child(8) > span { animation-delay: .62s; }
+    .lede { margin: 0; font-size: 19px; line-height: 1.6; color: var(--soft); max-width: 520px; }
+    .hero-cta { display: flex; align-items: center; gap: 14px; padding-top: 6px; flex-wrap: wrap; }
+    .stars-row { display: flex; align-items: center; gap: 12px; color: var(--soft); font-size: 14px; padding-top: 10px; }
+    .stars { display: flex; gap: 3px; }
+    .agv:not(.m-off) .stars svg { animation: up .6s var(--ease) both; }
+    .agv:not(.m-off) .stars svg:nth-child(1) { animation-delay: 1.10s; }
+    .agv:not(.m-off) .stars svg:nth-child(2) { animation-delay: 1.18s; }
+    .agv:not(.m-off) .stars svg:nth-child(3) { animation-delay: 1.26s; }
+    .agv:not(.m-off) .stars svg:nth-child(4) { animation-delay: 1.34s; }
+    .agv:not(.m-off) .stars svg:nth-child(5) { animation-delay: 1.42s; }
+    .hero-media { position: relative; padding: 56px var(--px) 56px 0; display: flex; }
+    .hero-frame { flex-grow: 1; border-radius: 8px; overflow: hidden; position: relative; min-height: 420px; }
+    .par { position: absolute; left: 0; right: 0; top: -8%; height: 116%; transform: translate3d(0, calc(var(--sy) * var(--par) * 1px), 0); will-change: transform; }
+    .m-off .par { transform: none; top: 0; height: 100%; }
+    .par .ph { height: 100%; border-radius: 0; }
+    .ct-card { position: absolute; left: -32px; bottom: 96px; width: 290px; background: var(--ivory); padding: 22px 24px; border-radius: 8px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 24px 48px rgba(0,0,0,0.35); z-index: 2; }
+
+    /* ---------- Quick access ---------- */
+    .quick { background: var(--navy-2); padding: 24px var(--px); border-bottom: 1px solid var(--gline); display: flex; flex-direction: column; gap: 10px; }
+    .quick-g { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+    .tile { display: flex; align-items: center; gap: 16px; padding: 20px; min-height: 60px; border: 1px solid var(--gline); border-radius: 8px; color: var(--ivory);
+      transition: border-color .4s var(--ease), background-color .4s var(--ease), transform .4s var(--ease); }
+    .tile-ic { flex-shrink: 0; transition: transform .45s var(--ease); }
+    .tile-t { display: flex; flex-direction: column; gap: 3px; flex-grow: 1; min-width: 0; }
+    .tile-h { font-size: 17px; font-weight: 500; }
+    .tile-s { color: #A9B1BF; font-size: 13px; }
+    .tile .arr { color: var(--gold); opacity: 0; transform: translateX(-6px); transition: opacity .35s var(--ease), transform .35s var(--ease); }
+    .tile-num { font-size: 16px; font-weight: 700; color: var(--ivory); }
+    @media (hover: hover) {
+      .tile:hover { border-color: rgba(184,146,90,0.7); background: rgba(184,146,90,0.07); }
+      .tile:hover .tile-ic { transform: translateY(-2px) scale(1.06); }
+      .tile:hover .arr { opacity: 1; transform: none; }
+    }
+
+    /* ---------- Section scaffolding ---------- */
+    .sec { padding: 112px var(--px); display: flex; flex-direction: column; gap: 52px; scroll-margin-top: 72px; }
+    .sec-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 64px; }
+    .sec-title { display: flex; flex-direction: column; gap: 18px; }
+    .h2 { margin: 0; font-size: 54px; line-height: 1.05; font-weight: 300; }
+    .h2-s { margin: 0; font-size: 46px; line-height: 1.08; font-weight: 300; }
+    .body { margin: 0; font-size: 17px; line-height: 1.65; color: var(--mute); }
+    .split { display: grid; grid-template-columns: 380px minmax(0, 1fr); gap: 72px; align-items: start; }
+    .split-l { display: flex; flex-direction: column; gap: 18px; }
+
+    /* ---------- Services ---------- */
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+    .cards > div { display: flex; }
+    .card { position: relative; flex-grow: 1; background: #FFFFFF; border: 1px solid var(--line); border-radius: 8px; padding: 12px 12px 28px; display: flex; flex-direction: column; gap: 18px; overflow: hidden;
+      transition: transform .5s var(--ease), box-shadow .5s var(--ease), border-color .5s var(--ease); }
+    .card::after { content: ''; position: absolute; left: 28px; right: 28px; bottom: 0; height: 2px; background: var(--gold); transform: scaleX(0); transform-origin: left center; transition: transform .6s var(--ease); }
+    .card-img { height: 200px; border-radius: 8px; overflow: hidden; }
+    .zoom { height: 100%; transition: transform 1.2s var(--ease); }
+    .card-body { padding: 0 16px; display: flex; flex-direction: column; gap: 10px; flex-grow: 1; }
+    .card-t { margin: 0; font-size: 27px; font-weight: 400; color: var(--navy); }
+    .card-d { font-size: 15px; line-height: 1.6; color: var(--mute); flex-grow: 1; }
+    .card .tl { padding-top: 6px; }
+    @media (hover: hover) {
+      .card:hover { transform: translateY(-6px); box-shadow: 0 22px 48px rgba(11,21,38,0.10); border-color: #D6CDBE; }
+      .card:hover::after { transform: scaleX(1); }
+      .card:hover .zoom, .doc:hover .zoom, .loc:hover .zoom { transform: scale(1.06); }
+      .card:hover .arr { transform: translateX(4px); }
+      .card:hover .u { background-size: 100% 1px; }
+    }
+    .more { display: flex; flex-direction: column; gap: 18px; border-top: 1px solid var(--line); padding-top: 32px; }
+    .chips { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .chip { padding: 10px 16px; min-height: 40px; display: inline-flex; align-items: center; border: 1px solid #D6CDBE; border-radius: 8px; font-size: 14px; color: var(--navy); background: transparent;
+      transition: background-color .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease); }
+    @media (hover: hover) { .chip:hover { background: var(--navy); border-color: var(--navy); color: var(--ivory); } }
+
+    /* ---------- What to expect ---------- */
+    .expect { background: var(--ivory); padding: 96px var(--px); }
+    .steps-w { display: flex; flex-direction: column; gap: 24px; }
+    .track { height: 1px; background: var(--gold); opacity: 0.7; }
+    .steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+    .step { height: 100%; background: #FFFFFF; border-radius: 8px; padding: 32px 28px; display: flex; flex-direction: column; gap: 14px; }
+    .step > div { display: flex; flex-direction: column; gap: 14px; }
+    .stars-sm { display: flex; gap: 4px; }
+    .step-n { font-size: 44px; font-weight: 300; color: var(--gold-ink); line-height: 1; }
+    .step-t { margin: 0; font-size: 23px; font-weight: 500; color: var(--navy); }
+    .step-d { margin: 0; font-size: 15px; line-height: 1.6; color: var(--mute); }
+
+    /* ---------- Imaging ---------- */
+    .imaging { background: var(--navy); padding: 104px var(--px); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 88px; align-items: center; scroll-margin-top: 72px; }
+    .img-frame { height: 480px; border-radius: 8px; overflow: hidden; }
+    .img-frame .ph { height: 100%; }
+    .img-copy { display: flex; flex-direction: column; gap: 24px; }
+    .mods { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; padding-top: 6px; }
+    .mod { padding: 14px 16px; border: 1px solid rgba(184,146,90,0.28); border-radius: 8px; color: var(--ivory); font-size: 15px; font-weight: 500; display: flex; align-items: center; gap: 10px; }
+    .mod::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+
+    /* ---------- Surgeons ---------- */
+    .docs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+    .doc { display: flex; flex-direction: column; gap: 18px; }
+    .doc-img { position: relative; height: 380px; border-radius: 8px; overflow: hidden; }
+    .doc-cta { position: absolute; left: 0; right: 0; bottom: 0; height: 52px; display: flex; align-items: center; justify-content: space-between; padding: 0 18px; background: var(--navy); color: var(--ivory); font-size: 14px; font-weight: 600;
+      transform: translate3d(0, 100%, 0); transition: transform .5s var(--ease); }
+    .doc-cta .arr { color: var(--gold); }
+    .doc-meta { display: flex; flex-direction: column; gap: 6px; }
+    .doc-n { margin: 0; font-size: 25px; font-weight: 400; color: var(--navy); transition: color .3s var(--ease); }
+    .doc-c { font-size: 13px; font-weight: 700; letter-spacing: 0.12em; color: var(--gold-ink); }
+    .doc-r { font-size: 14px; color: var(--mute); }
+    @media (hover: hover) { .doc:hover .doc-cta, .doc:focus-visible .doc-cta { transform: none; } .doc:hover .doc-n { color: var(--gold-ink); } }
+
+    /* ---------- Reviews ---------- */
+    .reviews { background: var(--ivory); padding: 96px var(--px); }
+    .rating { font-size: 112px; line-height: 1; font-weight: 300; color: var(--navy); font-variant-numeric: tabular-nums; }
+    .quotes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+    .quote { height: 100%; background: #FFFFFF; border-radius: 8px; padding: 32px 28px; display: flex; flex-direction: column; gap: 20px; }
+    .quote p { margin: 0; font-size: 21px; line-height: 1.45; font-weight: 400; color: var(--navy); flex-grow: 1; }
+    .quote span { font-size: 14px; color: var(--mute); }
+    .dots { gap: 6px; align-items: center; }
+    .dot { width: 30px; height: 44px; padding: 0; border: none; background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .dot::after { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #D6CDBE; transition: background-color .35s var(--ease), transform .35s var(--ease); }
+    .dot.on::after { background: var(--gold-ink); transform: scale(1.45); }
+    .qmark { font-family: 'Bodoni Moda', Georgia, serif; font-size: 56px; line-height: 0.6; color: var(--gold); height: 22px; }
+
+    /* ---------- Locations ---------- */
+    .locs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; }
+    .loc { height: 100%; background: var(--navy-2); border: 1px solid var(--gline); border-radius: 8px; padding: 12px; display: flex; flex-direction: column; transition: border-color .5s var(--ease); }
+    @media (hover: hover) { .loc:hover { border-color: rgba(184,146,90,0.55); } }
+    .loc-img { height: 240px; border-radius: 8px; overflow: hidden; }
+    .loc-img .ph { height: 100%; }
+    .loc-b { padding: 28px 24px 24px; display: flex; flex-direction: column; gap: 20px; flex-grow: 1; }
+    .loc-t { margin: 0; font-size: 32px; font-weight: 400; color: var(--ivory); }
+    .loc-a { font-size: 16px; line-height: 1.6; color: #C9CFD9; font-style: normal; }
+    .loc-f { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; font-size: 14px; }
+    .loc-f > div { display: flex; flex-direction: column; gap: 4px; }
+    .loc-f .k { color: #A9B1BF; }
+    .loc-f .v { color: var(--ivory); font-weight: 600; font-size: 16px; transition: color .3s var(--ease); }
+    @media (hover: hover) { .loc-f a.v:hover { color: var(--gold); } }
+    .loc-cta { display: flex; gap: 12px; padding-top: 4px; margin-top: auto; }
+
+    /* ---------- FAQ ---------- */
+    .faq { padding-top: 104px; padding-bottom: 104px; }
+    .faq-list { display: flex; flex-direction: column; gap: 12px; }
+    .qa { border: 1px solid var(--line); border-radius: 8px; background: #FFFFFF; transition: border-color .4s var(--ease), box-shadow .4s var(--ease); }
+    .qa.open { border-color: #D6CDBE; box-shadow: 0 14px 34px rgba(11,21,38,0.06); }
+    .qa-b { width: 100%; min-height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 18px 26px; background: transparent; border: none; text-align: left; cursor: pointer; color: var(--navy); border-radius: 8px; }
+    .qa-q { font-size: 20px; font-weight: 500; line-height: 1.35; transition: color .3s var(--ease); }
+    @media (hover: hover) { .qa-b:hover .qa-q { color: var(--gold-ink); } }
+    .qa-i { position: relative; width: 32px; height: 32px; flex-shrink: 0; border: 1px solid #D6CDBE; border-radius: 8px; transition: transform .45s var(--ease), background-color .45s var(--ease), border-color .45s var(--ease); }
+    .qa-i::before, .qa-i::after { content: ''; position: absolute; left: 50%; top: 50%; width: 12px; height: 1.5px; background: var(--gold-ink); transform: translate(-50%, -50%); transition: background-color .45s var(--ease); }
+    .qa-i::after { transform: translate(-50%, -50%) rotate(90deg); }
+    .qa.open .qa-i { transform: rotate(45deg); background: var(--navy); border-color: var(--navy); }
+    .qa.open .qa-i::before, .qa.open .qa-i::after { background: var(--ivory); }
+    .qa-a { display: grid; grid-template-rows: 0fr; visibility: hidden; transition: grid-template-rows .5s var(--ease), visibility 0s linear .5s; }
+    .qa.open .qa-a { grid-template-rows: 1fr; visibility: visible; transition: grid-template-rows .5s var(--ease), visibility 0s; }
+    .qa-a > div { overflow: hidden; }
+    .qa-a p { margin: 0; padding: 0 26px 24px; font-size: 16px; line-height: 1.65; color: var(--mute); max-width: 720px; }
+
+    /* ---------- Insurance / CTA / Footer ---------- */
+    .ins-w { padding: 0 var(--px) 88px; background: var(--paper); }
+    .ins { background: #FFFFFF; border: 1px solid var(--line); border-radius: 8px; padding: 40px 44px; display: flex; align-items: center; justify-content: space-between; gap: 56px; }
+    .ins-r { display: flex; flex-direction: column; gap: 14px; align-items: flex-end; }
+    .ins-l { font-size: 16px; line-height: 1.8; color: var(--mute); text-align: right; max-width: 640px; }
+    .cta { background: var(--ivory); padding: 96px var(--px); display: flex; flex-direction: column; align-items: center; gap: 26px; text-align: center; }
+    .cta-b { display: flex; gap: 14px; padding-top: 8px; }
+    .foot { background: var(--ink); padding: 80px var(--px) 40px; display: flex; flex-direction: column; gap: 56px; flex-grow: 1; }
+    .foot-g { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.3fr; gap: 48px; }
+    .foot-c { display: flex; flex-direction: column; gap: 14px; font-size: 14px; color: #C9CFD9; }
+    .foot-c a { width: fit-content; transition: color .3s var(--ease); }
+    @media (hover: hover) { .foot-c a:hover, .foot-bot a:hover { color: var(--gold); } }
+    .foot-bot { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; border-top: 1px solid var(--gline); padding-top: 28px; font-size: 13px; color: #A9B1BF; }
+
+    /* ---------- Mobile action bar ---------- */
+    .abar { display: none; position: sticky; bottom: 0; z-index: 30; height: 76px; background: rgba(7,14,26,0.96); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border-top: 1px solid rgba(184,146,90,0.3); grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 8px; gap: 8px; }
+    .agv:not(.m-off) .abar { animation: barup .8s var(--ease) .9s both; }
+    .abar a { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: var(--ivory); font-size: 12px; font-weight: 600; border-radius: 8px; transition: background-color .25s var(--ease), transform .2s var(--ease); }
+    .abar a:active { transform: scale(0.96); background: rgba(244,239,230,0.06); }
+    .abar a.book { background: var(--gold); color: var(--navy); font-weight: 700; }
+
+    /* ---------- Mobile menu overlay ---------- */
+    .mnav { position: fixed; inset: 0; z-index: 60; background: var(--ink); display: flex; flex-direction: column; overflow-y: auto; overscroll-behavior: contain;
+      opacity: 0; visibility: hidden; transform: translate3d(0, -12px, 0); transition: opacity .45s var(--ease), transform .45s var(--ease), visibility 0s linear .45s; }
+    .mnav.open { opacity: 1; visibility: visible; transform: none; transition: opacity .45s var(--ease), transform .45s var(--ease), visibility 0s; }
+    .m-off .mnav { transition: none; }
+    .mnav-top { height: 68px; flex-shrink: 0; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; border-bottom: 1px solid var(--gline); }
+    .mnav-q { padding: 20px 20px 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .mnav-l { padding: 12px 20px 0; display: flex; flex-direction: column; }
+    .ml { padding: 18px 0; min-height: 44px; border-bottom: 1px solid rgba(184,146,90,0.2); font-size: 26px; font-weight: 300; color: var(--ivory); display: flex; justify-content: space-between; align-items: center;
+      opacity: 0; transform: translate3d(0, 14px, 0); transition: opacity .5s var(--ease), transform .5s var(--ease), color .3s var(--ease); }
+    .ml .arr { font-size: 18px; color: var(--gold); transition: transform .35s var(--ease); }
+    .mnav.open .ml { opacity: 1; transform: none; }
+    .mnav.open .ml:nth-child(1) { transition-delay: .08s; }
+    .mnav.open .ml:nth-child(2) { transition-delay: .13s; }
+    .mnav.open .ml:nth-child(3) { transition-delay: .18s; }
+    .mnav.open .ml:nth-child(4) { transition-delay: .23s; }
+    .mnav.open .ml:nth-child(5) { transition-delay: .28s; }
+    .ml:active .arr { transform: translateX(4px); }
+    .mnav-c { margin-top: auto; padding: 24px 20px 28px; display: flex; flex-direction: column; gap: 10px; background: var(--navy); border-top: 1px solid var(--gline); }
+    .mnav-c a { height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; background: var(--navy-2); border: 1px solid var(--gline); border-radius: 8px; }
+
+    /* ================= Responsive (container queries) ================= */
+    @container page (max-width: 1240px) {
+      .page > * { --px: 40px; }
+      .nav { display: none; }
+      .menu-btn { display: inline-flex; }
+      .h1 { font-size: 60px; }
+      .hero-copy { padding-right: 48px; }
+      .split { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+      .foot-g { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .imaging { gap: 56px; }
+    }
+    @container page (max-width: 960px) {
+      .hero { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+      .hero-media { order: -1; padding: 24px var(--px) 0; }
+      .hero-frame { min-height: 360px; }
+      .ct-card { left: calc(var(--px) + 20px); bottom: 20px; }
+      .quick-g { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .docs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .imaging { grid-template-columns: minmax(0, 1fr); }
+      .img-frame { height: 360px; }
+      .locs { grid-template-columns: minmax(0, 1fr); }
+      .sec-head { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .ins { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .ins-r { align-items: flex-start; }
+      .ins-l { text-align: left; }
+    }
+    @container page (max-width: 760px) {
+      .page > * { --px: 16px; }
+      .only-d { display: none !important; }
+      .only-m { display: flex !important; }
+      .util { display: none; }
+      .hdr { height: 68px; padding: 0 16px 0 20px; }
+      .is-scrolled .hdr { height: 60px; margin-bottom: 8px; }
+      .brand { gap: 10px; }
+      .brand svg, .is-scrolled .brand svg { width: 38px; height: 38px; }
+      .brand-w, .is-scrolled .brand-w { font-size: 22px; }
+      .brand-s { font-size: 7px; letter-spacing: 0.28em; }
+      .hdr-a { gap: 8px; }
+      .hdr-req, .portal-txt { display: none !important; }
+      .portal-btn { width: 44px; padding: 0; }
+      .eyebrow { font-size: 12px; letter-spacing: 0.18em; }
+      .hero-media { padding: 16px 16px 0; }
+      .hero-frame { min-height: 210px; }
+      .ct-card { display: none; }
+      .hero-copy { padding: 24px 20px 32px; gap: 16px; }
+      .hero-rule { display: none; }
+      .h1 { font-size: 38px; line-height: 1.06; }
+      .lede { font-size: 15px; }
+      .hero-cta .btn { width: 100%; height: 54px; }
+      .hero-cta .call-btn { display: none; }
+      .stars-row { justify-content: center; font-size: 13px; padding-top: 0; }
+      .quick { padding: 20px 16px; }
+      .quick-g { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+      .tile { padding: 0 16px; height: 60px; gap: 12px; }
+      .tile-req { display: none !important; }
+      .tile .tile-ic, .tile .arr, .tile .dnum { display: none; }
+      .tile-h { font-size: 16px; }
+      .tile-s { font-size: 12px; }
+      .tile-portal { height: 52px; justify-content: center; border-color: rgba(244,239,230,0.35); }
+      .tile-portal .tile-t { flex-grow: 0; }
+      .tile-portal .tile-s { display: none; }
+      .tile-portal .tile-ic { display: block; width: 16px; height: 16px; }
+      .tile-portal .tile-h { font-size: 15px; font-weight: 600; font-family: 'Manrope', sans-serif; letter-spacing: 0; }
+      .sec { padding: 56px 16px 48px; gap: 24px; }
+      .sec-title, .split-l { gap: 12px; padding: 0 4px; }
+      .h2 { font-size: 32px; line-height: 1.1; }
+      .h2-s { font-size: 30px; line-height: 1.1; }
+      .sec-head .body { display: none; }
+      .cards { gap: 12px; }
+      .card { padding: 8px 8px 16px; gap: 12px; }
+      .card::after { left: 14px; right: 14px; }
+      .card-img { height: 112px; }
+      .card-img .ph-light, .doc-img .ph-light { font-size: 11px; line-height: 1.4; padding: 10px; }
+      .card-body { padding: 0 6px; gap: 8px; }
+      .card-t { font-size: 18px; font-weight: 500; }
+      .card-d { display: none; }
+      .card .tl { font-size: 13px; padding-top: 0; }
+      .more { border-top: none; padding-top: 8px; gap: 14px; }
+      .more h3 { font-size: 18px !important; padding: 0 4px; }
+      .chips { flex-wrap: nowrap; overflow-x: auto; scroll-snap-type: x proximity; gap: 8px; margin: 0 -16px; padding: 0 16px 4px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+      .chips::-webkit-scrollbar { display: none; }
+      .chip { flex: 0 0 auto; scroll-snap-align: start; padding: 12px 14px; font-size: 13px; }
+      .all-btn { height: 50px; font-size: 15px; width: 100%; }
+      .expect, .reviews { padding: 48px 16px; }
+      .steps-w { gap: 12px; }
+      .track { display: none; }
+      .steps { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+      .step { flex-direction: row; gap: 16px; padding: 20px; }
+      .step-n { font-size: 30px; }
+      .step-t { font-size: 18px; }
+      .step > div { gap: 6px; }
+      .step-d { font-size: 14px; line-height: 1.55; }
+      .expect.split, .reviews.split { gap: 20px; }
+      .expect .tl { display: none; }
+      .imaging { padding: 48px 16px; gap: 20px; }
+      .img-frame { height: 220px; }
+      .img-copy { gap: 14px; padding: 0 4px; }
+      .img-copy .body { font-size: 15px; }
+      .mods { gap: 8px; margin: 0 -4px; }
+      .mod { padding: 12px; font-size: 13px; }
+      .docs { gap: 12px; row-gap: 20px; }
+      .doc { gap: 10px; }
+      .doc-img { height: 200px; }
+      .doc-cta { display: none; }
+      .doc-n { font-size: 17px; font-weight: 500; }
+      .doc-c { font-size: 11px; }
+      .doc-r { font-size: 12px; }
+      .reviews .split-l { flex-direction: row; flex-wrap: wrap; align-items: flex-end; column-gap: 16px; }
+      .reviews .split-l .eyebrow { width: 100%; }
+      .rating { font-size: 64px; }
+      .reviews .stars-sm { display: none; }
+      .reviews .body { font-size: 13px; padding-bottom: 8px; }
+      .quotes { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px; margin: 0 -16px; padding: 0 16px 4px; scrollbar-width: none; }
+      .quotes::-webkit-scrollbar { display: none; }
+      .quotes > div { flex: 0 0 84%; scroll-snap-align: start; }
+      .quote { padding: 22px; gap: 12px; }
+      .quote p { font-size: 18px; }
+      .quote span { font-size: 13px; }
+      .locs { gap: 16px; }
+      .loc { padding: 8px; }
+      .loc-img { height: 150px; }
+      .loc-img .ph { font-size: 12px; padding: 16px; }
+      .loc-b { padding: 20px 12px 12px; gap: 14px; }
+      .loc-t { font-size: 22px; }
+      .loc-a { font-size: 14px; line-height: 1.55; }
+      .loc-f { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; font-size: 13px; }
+      .loc-f .v { font-size: 15px; }
+      .loc-f .appt { display: none; }
+      .loc-cta { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+      .loc-cta .btn { width: 100%; padding: 0 12px; }
+      .faq { padding: 56px 16px 40px; }
+      .faq-list { gap: 8px; }
+      .qa-b { min-height: 56px; padding: 14px 16px; gap: 12px; }
+      .qa-q { font-size: 16px; }
+      .qa-i { width: 28px; height: 28px; }
+      .qa-a p { padding: 0 16px 16px; font-size: 14px; line-height: 1.6; }
+      .ins-w { padding: 0 16px 48px; }
+      .ins { padding: 24px 20px; gap: 12px; }
+      .ins h2 { font-size: 22px !important; }
+      .ins-l { font-size: 14px; line-height: 1.7; }
+      .cta { padding: 48px 20px; gap: 18px; }
+      .cta svg { width: 48px; height: 48px; }
+      .cta .h2 { font-size: 30px; line-height: 1.12; }
+      .cta-b { flex-direction: column; width: 100%; padding-top: 0; }
+      .cta-b .btn { width: 100%; height: 54px; }
+      .foot { padding: 44px 20px 32px; gap: 32px; }
+      .foot-g { gap: 24px; }
+      .foot-brand, .foot-contact { grid-column: 1 / -1; }
+      .foot-bot { font-size: 12px; justify-content: flex-start; padding-top: 20px; }
+      .abar { display: grid; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .agv *, .agv *::before, .agv *::after { animation: none !important; transition-duration: 0.01ms !important; transition-delay: 0s !important; }
+      .agv .rv { opacity: 1 !important; transform: none !important; clip-path: none !important; }
+      .agv .par { transform: none !important; }
+      .agv .draw circle, .agv .draw path { stroke-dashoffset: 0 !important; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="agv">
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="page">
+
+    <!-- Utility bar -->
+    <div class="util">
+      <div class="util-g">
+        <a href="tel:4803780485">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color: #B8925A;"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"></path></svg>
+          <span>Ahwatukee (Phoenix) <strong>480-378-0485</strong></span>
+        </a>
+        <a href="tel:5208006662">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color: #B8925A;"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"></path></svg>
+          <span>Maricopa <strong>520-800-6662</strong></span>
+        </a>
+      </div>
+      <div class="util-g only-d">
+        <a href="#locations">Locations &amp; Hours</a>
+        <a href="#">New Patient Forms</a>
+        <a href="#">Insurance</a>
+      </div>
+    </div>
+
+    <!-- Header -->
+    <header class="hdr">
+      <a href="#" class="brand" aria-label="Agave Foot &amp; Ankle Surgeons home">
+        <svg class="draw draw-ld" viewBox="0 0 64 64" fill="none" stroke="#B8925A" stroke-width="1.1" stroke-linejoin="round" aria-hidden="true"><circle cx="32" cy="32" r="30" pathLength="1"></circle><path pathLength="1" d="M32 52 C29.5 40 30 24 32 10 C34 24 34.5 40 32 52Z"></path><path pathLength="1" d="M32 52 C27 42 23 30 22 16 C27 27 30 40 32 52Z"></path><path pathLength="1" d="M32 52 C37 42 41 30 42 16 C37 27 34 40 32 52Z"></path><path pathLength="1" d="M32 52 C24 46 17 38 13 26 C21 34 27 44 32 52Z"></path><path pathLength="1" d="M32 52 C40 46 47 38 51 26 C43 34 37 44 32 52Z"></path><path pathLength="1" d="M32 52 C24 50 16 46 10 38 C19 42 26 47 32 52Z"></path><path pathLength="1" d="M32 52 C40 50 48 46 54 38 C45 42 38 47 32 52Z"></path></svg>
+        <span class="brand-t">
+          <span class="logo brand-w ld-fade t2">AGAVE</span>
+          <span class="brand-s ld-fade t3">FOOT &amp; ANKLE SURGEONS</span>
+        </span>
+      </a>
+      <nav class="nav" aria-label="Main">
+        
+          <a href="#services" class="nl">Conditions &amp; Treatments</a>
+        
+          <a href="#surgeons" class="nl">Surgeons</a>
+        
+          <a href="#imaging" class="nl">Imaging</a>
+        
+          <a href="#" class="nl">Patients</a>
+        
+          <a href="#locations" class="nl">Locations</a>
+        
+      </nav>
+      <div class="hdr-a">
+        <a href="#" class="btn btn-sm btn-ghost portal-btn" aria-label="Patient portal">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+          <span class="portal-txt">Patient Portal</span>
+        </a>
+        <a href="#" class="btn btn-sm btn-gold hdr-req">Request a Consultation</a>
+        <button type="button" class="ib menu-btn" aria-label="Open menu" aria-controls="agv-menu" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"></path></svg>
+        </button>
+      </div>
+      <span class="prog" aria-hidden="true"></span>
+    </header>
+
+    <main id="main" style="display: flex; flex-direction: column;">
+
+      <!-- Hero -->
+      <section class="hero">
+        <div class="hero-copy">
+          <h1 class="h h1">
+            <span class="hw"><span>Foot</span></span>
+            <span class="hw"><span>&amp;</span></span>
+            <span class="hw"><span>ankle</span></span>
+            <span class="hw"><span>surgeons</span></span>
+            <span class="hw"><span>in</span></span>
+            <span class="hw"><span>Phoenix</span></span>
+            <span class="hw"><span>and</span></span>
+            <span class="hw"><span>Maricopa.</span></span>
+          </h1>
+          <p class="lede ld-up t5">Residency-trained surgeons for bunions, fractures, sports injuries and arthritis — with in-office standing CT and conservative care considered first.</p>
+          <div class="hero-cta ld-up t6">
+            <a href="#" class="btn btn-gold">
+              Request a Consultation
+              <svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+            </a>
+            <a href="tel:4803780485" class="btn btn-ghost call-btn">Call 480-378-0485</a>
+          </div>
+          <div class="stars-row ld-fade t7">
+            <div class="stars" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#B8925A"><path d="M12 2l3 6.9 7.5.7-5.7 5 1.7 7.4L12 18.3 5.5 22l1.7-7.4-5.7-5 7.5-.7z"></path></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#B8925A"><path d="M12 2l3 6.9 7.5.7-5.7 5 1.7 7.4L12 18.3 5.5 22l1.7-7.4-5.7-5 7.5-.7z"></path></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#B8925A"><path d="M12 2l3 6.9 7.5.7-5.7 5 1.7 7.4L12 18.3 5.5 22l1.7-7.4-5.7-5 7.5-.7z"></path></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#B8925A"><path d="M12 2l3 6.9 7.5.7-5.7 5 1.7 7.4L12 18.3 5.5 22l1.7-7.4-5.7-5 7.5-.7z"></path></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#B8925A"><path d="M12 2l3 6.9 7.5.7-5.7 5 1.7 7.4L12 18.3 5.5 22l1.7-7.4-5.7-5 7.5-.7z"></path></svg>
+            </div>
+            <span><strong style="color: #F4EFE6;">4.88</strong> from 129 patient reviews</span>
+          </div>
+        </div>
+        <div class="hero-media">
+          <div class="hero-frame ld-wipe t2">
+            <div class="par">
+              <img src="images/hero-reception.jpg" alt="Reception area at Agave Foot &amp; Ankle Surgeons, with the gold agave wordmark on a wood slat wall" width="1460" height="1230" style="width: 100%; height: 100%; object-fit: cover; object-position: 38% 40%; display: block;">
+            </div>
+          </div>
+          <div class="ct-card ld-slide t8">
+            <span class="eyebrow" style="color: #7A5C2E; font-size: 11px;">In-office imaging</span>
+            <span class="h" style="font-size: 24px; line-height: 1.2; color: #0B1526; font-weight: 500;">State-of-the-art standing CT imaging</span>
+            <span style="font-size: 13px; color: #4A5261; line-height: 1.5;">Diagnosis and surgical planning from an accurate, loaded view.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Quick access -->
+      <div class="quick">
+        <p class="eyebrow only-m" style="color: #B8925A; font-size: 11px; padding: 0 4px 2px;">Call an office</p>
+        <div class="quick-g">
+          <a href="#" class="tile tile-req ld-up t4">
+            <svg class="tile-ic" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#B8925A" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"></rect><path d="M3 9h18M8 2v4M16 2v4M8 14h3"></path></svg>
+            <span class="tile-t"><span class="h tile-h">Request a Consultation</span><span class="tile-s">Online request form</span></span>
+            <span class="arr" aria-hidden="true">→</span>
+          </a>
+          <a href="tel:4803780485" class="tile ld-up t5">
+            <svg class="tile-ic" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#B8925A" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>
+            <span class="tile-t"><span class="h tile-h">Ahwatukee · Phoenix</span><span class="tile-s">Appointments<span class="dnum"> 480-378-0485</span></span></span>
+            <span class="tile-num only-m">480-378-0485</span>
+            <span class="arr" aria-hidden="true">→</span>
+          </a>
+          <a href="tel:5208006662" class="tile ld-up t6">
+            <svg class="tile-ic" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#B8925A" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>
+            <span class="tile-t"><span class="h tile-h">Maricopa</span><span class="tile-s">Appointments<span class="dnum"> 520-800-6662</span></span></span>
+            <span class="tile-num only-m">520-800-6662</span>
+            <span class="arr" aria-hidden="true">→</span>
+          </a>
+          <a href="#" class="tile tile-portal ld-up t7">
+            <svg class="tile-ic" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#B8925A" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+            <span class="tile-t"><span class="h tile-h">Patient Portal</span><span class="tile-s">Sign in to your account</span></span>
+            <span class="arr" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Services -->
+      <section id="services" class="sec" style="background: #FAF8F4;">
+        <div class="sec-head">
+          <div class="sec-title">
+            <p class="eyebrow rv" style="color: #7A5C2E;">Conditions &amp; Treatments</p>
+            <h2 class="h h2 rv d1" style="color: #0B1526;">Foot and ankle conditions<br>we treat — and operate on.</h2>
+          </div>
+          <p class="body rv d2" style="max-width: 430px;">Every plan is built by a foot and ankle surgeon. When surgery is the right answer, the same team that diagnosed you performs it.</p>
+        </div>
+        <div class="cards">
+          <div class="rv d1"><a href="#" class="card">
+            <div class="card-img"><div class="ph-light zoom">Image from ahwfac.com — Bunion (docs/85497.jpg)</div></div>
+            <div class="card-body">
+              <h3 class="h card-t">Bunions</h3>
+              <span class="card-d">From footwear changes to surgical bunion correction that realigns the joint.</span>
+              <span class="tl"><span class="u">Bunion treatment</span> <span class="arr">→</span></span>
+            </div>
+          </a></div>
+          <div class="rv d2"><a href="#" class="card">
+            <div class="card-img"><div class="ph-light zoom">Image from ahwfac.com — Hammertoe (docs/83685.jpg)</div></div>
+            <div class="card-body">
+              <h3 class="h card-t">Hammertoes</h3>
+              <span class="card-d">Relief for bent, painful toes, including surgical correction when padding and shoes aren't enough.</span>
+              <span class="tl"><span class="u">Hammertoe treatment</span> <span class="arr">→</span></span>
+            </div>
+          </a></div>
+          <div class="rv d3"><a href="#" class="card">
+            <div class="card-img"><div class="ph-light zoom">Image from ahwfac.com — Fractures (docs/83671.jpg)</div></div>
+            <div class="card-body">
+              <h3 class="h card-t">Fractures</h3>
+              <span class="card-d">Broken bones of the foot and ankle, from casting and boots to surgical fixation.</span>
+              <span class="tl"><span class="u">Fracture care</span> <span class="arr">→</span></span>
+            </div>
+          </a></div>
+          <div class="rv d1"><a href="#" class="card">
+            <div class="card-img"><div class="ph-light zoom">Image from ahwfac.com — Sports Injuries (docs/83682.jpg)</div></div>
+            <div class="card-body">
+              <h3 class="h card-t">Sports Injuries</h3>
+              <span class="card-d">Sprained ankles, tendonitis and overuse injuries, with a plan to get you back to training.</span>
+              <span class="tl"><span class="u">Sports injury care</span> <span class="arr">→</span></span>
+            </div>
+          </a></div>
+          <div class="rv d2"><a href="#" class="card">
+            <div class="card-img"><div class="ph-light zoom">Image from ahwfac.com — Arthritis (docs/83688.jpg)</div></div>
+            <div class="card-body">
+              <h3 class="h card-t">Arthritis</h3>
+              <span class="card-d">Painful, stiff joints in the foot and ankle, from injections and orthotics to joint surgery.</span>
+              <span class="tl"><span class="u">Arthritis treatment</span> <span class="arr">→</span></span>
+            </div>
+          </a></div>
+          <div class="rv d3"><a href="#" class="card">
+            <div class="card-img"><div class="ph-light zoom">Image from ahwfac.com — Heel Pain (docs/83672.jpg)</div></div>
+            <div class="card-body">
+              <h3 class="h card-t">Heel Pain</h3>
+              <span class="card-d">Plantar fasciitis and other causes of heel pain, starting with lasting nonsurgical relief.</span>
+              <span class="tl"><span class="u">Heel pain treatment</span> <span class="arr">→</span></span>
+            </div>
+          </a></div>
+        </div>
+        <div class="more rv">
+          <h3 class="h" style="margin: 0; font-size: 20px; font-weight: 500; color: #0B1526;">More conditions we treat</h3>
+          <div class="chips">
+            <a href="#" class="chip">Sprained Ankle</a>
+            <a href="#" class="chip">Tendonitis</a>
+            <a href="#" class="chip">Morton's Neuroma</a>
+            <a href="#" class="chip">Ganglion Cyst</a>
+            <a href="#" class="chip">Gout</a>
+            <a href="#" class="chip">Neuropathy</a>
+            <a href="#" class="chip">Diabetic Foot Care</a>
+            <a href="#" class="chip">Skin Cancer</a>
+            <a href="#" class="chip">Custom Orthotics</a>
+            <a href="#" class="chip">Ingrown Toenail</a>
+            <a href="#" class="chip">Pediatric Foot Care</a>
+            <a href="#" class="chip">Sever's Disease</a>
+            <a href="#" class="chip">Fungal Nails</a>
+            <a href="#" class="chip">Warts</a>
+            <a href="#" class="chip">Corns</a>
+            <a href="#" class="tl only-d" style="padding: 10px 6px;"><span class="u">All conditions &amp; treatments</span> <span class="arr">→</span></a>
+          </div>
+          <a href="#" class="btn btn-line all-btn only-m">All conditions &amp; treatments</a>
+        </div>
+      </section>
+
+      <!-- What to expect -->
+      <section class="expect split">
+        <div class="split-l">
+          <p class="eyebrow rv" style="color: #7A5C2E;">What to Expect</p>
+          <h2 class="h h2-s rv d1" style="color: #0B1526;">From first visit to full recovery.</h2>
+          <a href="#" class="tl rv d2" style="padding-top: 8px;"><span class="u">New patient information</span> <span class="arr">→</span></a>
+        </div>
+        <div class="steps-w">
+          <div class="track rv grow d1" aria-hidden="true"></div>
+          <div class="steps">
+            <div class="rv d2"><div class="step">
+              <span class="h step-n">01</span>
+              <div><h3 class="h step-t">Request a consultation</h3><p class="step-d">Book online or call the Ahwatukee or Maricopa office directly.</p></div>
+            </div></div>
+            <div class="rv d3"><div class="step">
+              <span class="h step-n">02</span>
+              <div><h3 class="h step-t">Exam &amp; imaging</h3><p class="step-d">A surgeon examines you, with X-ray, ultrasound or standing CT in the same visit when needed.</p></div>
+            </div></div>
+            <div class="rv d4"><div class="step">
+              <span class="h step-n">03</span>
+              <div><h3 class="h step-t">Your treatment plan</h3><p class="step-d">Conservative options first. Surgery when it's the clearest path to lasting relief.</p></div>
+            </div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Imaging -->
+      <section id="imaging" class="imaging">
+        <div class="img-frame rv clip" style="background: #111E33; border: 1px solid rgba(184,146,90,0.22); padding: 28px;"><img class="zoom" src="images/standing-ct.png" alt="A patient standing on the pedCAT weight-bearing CT scanner, with 3D scans of the foot and ankle shown on the attached monitor" width="516" height="618" style="width: 100%; height: 100%; object-fit: contain; display: block;"></div>
+        <div class="img-copy">
+          <p class="eyebrow rv" style="color: #B8925A;">In-Office Imaging</p>
+          <h2 class="h rv d1" style="margin: 0; font-size: clamp(30px, 4.6cqi, 50px); line-height: 1.08; font-weight: 300; color: #F4EFE6;">Standing CT imaging, right in our Phoenix office.</h2>
+          <p class="body rv d2" style="color: #B9C0CB; max-width: 500px;">A standing CT scan shows your foot and ankle under real body weight, so diagnosis and surgical planning start from how you actually walk — without a separate trip to a hospital.</p>
+          <div class="mods">
+            <div class="mod rv d2">Standing CT</div>
+            <div class="mod rv d3">3D imaging</div>
+            <div class="mod rv d3">Diagnostic ultrasound</div>
+            <div class="mod rv d4">Vascular evaluations</div>
+            <div class="mod rv d4">X-ray</div>
+            <div class="mod rv d5">MRI next door</div>
+          </div>
+          <a href="#" class="tl on-dark rv d5" style="padding-top: 6px;"><span class="u">About standing CT imaging</span> <span class="arr">→</span></a>
+        </div>
+      </section>
+
+      <!-- Surgeons -->
+      <section id="surgeons" class="sec" style="background: #FAF8F4;">
+        <div class="sec-head">
+          <div class="sec-title">
+            <p class="eyebrow rv" style="color: #7A5C2E;">Your Surgeons</p>
+            <h2 class="h h2 rv d1" style="color: #0B1526;">Meet our foot and ankle surgeons.</h2>
+          </div>
+        </div>
+        <div class="docs">
+          <div class="rv d1"><a href="#" class="doc">
+            <div class="doc-img"><img class="zoom" src="images/dr-crezee.jpg" alt="Kelvin S. Crezee, DPM, FACFAS, foot and ankle surgeon at Agave Foot &amp; Ankle Surgeons" width="800" height="1200" style="width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block;"><span class="doc-cta" aria-hidden="true">View profile <span class="arr">→</span></span></div>
+            <div class="doc-meta"><h3 class="h doc-n">Kelvin S. Crezee, DPM</h3><span class="doc-c">FACFAS</span><span class="doc-r">Foot &amp; Ankle Surgeon</span></div>
+          </a></div>
+          <div class="rv d2"><a href="#" class="doc">
+            <div class="doc-img"><img class="zoom" src="images/dr-beecroft.jpg" alt="C. Jon Beecroft, DPM, FACFAS, foot and ankle surgeon at Agave Foot &amp; Ankle Surgeons" width="800" height="1198" style="width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block;"><span class="doc-cta" aria-hidden="true">View profile <span class="arr">→</span></span></div>
+            <div class="doc-meta"><h3 class="h doc-n">C. Jon Beecroft, DPM</h3><span class="doc-c">FACFAS</span><span class="doc-r">Foot &amp; Ankle Surgeon</span></div>
+          </a></div>
+          <div class="rv d3"><a href="#" class="doc">
+            <div class="doc-img"><img class="zoom" src="images/dr-richardson.jpg" alt="Jordan Richardson, DPM, foot and ankle surgeon at Agave Foot &amp; Ankle Surgeons" width="237" height="257" style="width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block;"><span class="doc-cta" aria-hidden="true">View profile <span class="arr">→</span></span></div>
+            <div class="doc-meta"><h3 class="h doc-n">Jordan Richardson, DPM</h3><span class="doc-c">RESIDENCY-TRAINED</span><span class="doc-r">Foot &amp; Ankle Surgeon</span></div>
+          </a></div>
+          <div class="rv d4"><a href="#" class="doc">
+            <div class="doc-img"><img class="zoom" src="images/dr-lemon.jpg" alt="Byron Lemon, DPM, foot and ankle surgeon at Agave Foot &amp; Ankle Surgeons" width="800" height="1067" style="width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block;"><span class="doc-cta" aria-hidden="true">View profile <span class="arr">→</span></span></div>
+            <div class="doc-meta"><h3 class="h doc-n">Byron Lemon, DPM</h3><span class="doc-c">[CREDENTIALS]</span><span class="doc-r">Foot &amp; Ankle Surgeon</span></div>
+          </a></div>
+        </div>
+      </section>
+
+      <!-- Reviews -->
+      <section class="reviews split">
+        <div class="split-l" style="gap: 14px;">
+          <p class="eyebrow rv" style="color: #7A5C2E;">Patient Reviews</p>
+          <span class="h rating rv d1" data-count="1" aria-label="Rated 4.88 out of 5"><span aria-hidden="true">4.88</span></span>
+          <div class="stars-sm rv d2" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#7A5C2E"><path d="M12 2l3 6.9 7.5.7-5.7 5 1.7 7.4L12 18.3 5.5 22l1.7-7.4-5.7-5 7.5-.7z"></path></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#7A5C2E"><path d="M12 2l3 6.9 7.5.7-5.7 5 1.7 7.4L12 18.3 5.5 22l1.7-7.4-5.7-5 7.5-.7z"></path></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#7A5C2E"><path d="M12 2l3 6.9 7.5.7-5.7 5 1.7 7.4L12 18.3 5.5 22l1.7-7.4-5.7-5 7.5-.7z"></path></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#7A5C2E"><path d="M12 2l3 6.9 7.5.7-5.7 5 1.7 7.4L12 18.3 5.5 22l1.7-7.4-5.7-5 7.5-.7z"></path></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#7A5C2E"><path d="M12 2l3 6.9 7.5.7-5.7 5 1.7 7.4L12 18.3 5.5 22l1.7-7.4-5.7-5 7.5-.7z"></path></svg>
+          </div>
+          <p class="body rv d2" style="font-size: 15px;">Average rating from 129 patient reviews</p>
+          <a href="#" class="tl rv d3 only-d" style="padding-top: 10px;"><span class="u">Read patient reviews</span> <span class="arr">→</span></a>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          <div class="quotes">
+            <div class="rv d1"><figure class="quote" style="margin: 0;">
+              <span class="qmark" aria-hidden="true">“</span>
+              <p class="h">Dr. Crezee takes the time to explain the diagnosis, and plan of care.</p>
+              <span>Misty C. · Google review</span>
+            </figure></div>
+            <div class="rv d2"><figure class="quote" style="margin: 0;">
+              <span class="qmark" aria-hidden="true">“</span>
+              <p class="h">Dr. Beecroft is an excellent doctor as well as caring and compassionate.</p>
+              <span>Helene R. · Google review</span>
+            </figure></div>
+            <div class="rv d3"><figure class="quote" style="margin: 0;">
+              <span class="qmark" aria-hidden="true">“</span>
+              <p class="h">Everyone from the front desk to the Dr and his assistant were helpful, efficient and professional.</p>
+              <span>Kathleen B. · Google review</span>
+            </figure></div>
+          </div>
+          <div class="dots only-m" aria-label="Patient reviews">
+            
+              <button type="button" class="dot on" aria-label="Show review 1 of 3 — Misty C." aria-current="true"></button>
+            
+              <button type="button" class="dot" aria-label="Show review 2 of 3 — Helene R." aria-current="false"></button>
+            
+              <button type="button" class="dot" aria-label="Show review 3 of 3 — Kathleen B." aria-current="false"></button>
+            
+          </div>
+          <a href="#" class="tl only-m" style="padding: 4px;"><span class="u">Read patient reviews</span> <span class="arr">→</span></a>
+        </div>
+      </section>
+
+      <!-- Locations -->
+      <section id="locations" class="sec" style="background: #0B1526;">
+        <div class="sec-title">
+          <p class="eyebrow rv" style="color: #B8925A;">Locations</p>
+          <h2 class="h h2 rv d1" style="color: #F4EFE6;">Foot and ankle care in Phoenix and Maricopa.</h2>
+        </div>
+        <div class="locs">
+          <div class="rv d1"><div class="loc">
+            <div class="loc-img"><img class="zoom" src="images/office-ahwatukee.jpg" alt="Exterior of the Agave Foot &amp; Ankle Surgeons office at 15810 S 45th Street in Ahwatukee, Phoenix" width="510" height="270" style="width: 100%; height: 100%; object-fit: cover; display: block;"></div>
+            <div class="loc-b">
+              <h3 class="h loc-t">Ahwatukee · Phoenix</h3>
+              <address class="loc-a">15810 S 45th Street, Suite 190<br>Phoenix, AZ 85048</address>
+              <div class="loc-f">
+                <div class="appt"><span class="k">Appointments</span><a href="tel:4803780485" class="v">480-378-0485</a></div>
+                <div><span class="k">General</span><a href="tel:4808931090" class="v">480-893-1090</a></div>
+                <div><span class="k">Hours</span><span class="v">[HOURS]</span></div>
+              </div>
+              <div class="loc-cta">
+                <a href="#" class="btn btn-md btn-gold only-d">Request at this office</a>
+                <a href="tel:4803780485" class="btn btn-md btn-gold only-m">Call to book</a>
+                <a href="https://www.google.com/maps/search/?api=1&amp;query=15810+S+45th+Street+Suite+190+Phoenix+AZ+85048" class="btn btn-md btn-ghost">Get Directions</a>
+              </div>
+            </div>
+          </div></div>
+          <div class="rv d2"><div class="loc">
+            <div class="loc-img"><img class="zoom" src="images/office-maricopa.jpg" alt="Exterior of the Agave Foot &amp; Ankle Surgeons office in Maricopa, Arizona at dusk" width="689" height="365" style="width: 100%; height: 100%; object-fit: cover; display: block;"></div>
+            <div class="loc-b">
+              <h3 class="h loc-t">Maricopa</h3>
+              <address class="loc-a">21300 N. John Wayne Parkway, Suite 126<br>Maricopa, AZ 85139</address>
+              <div class="loc-f">
+                <div class="appt"><span class="k">Appointments</span><a href="tel:5208006662" class="v">520-800-6662</a></div>
+                <div><span class="k">General</span><a href="tel:5204941090" class="v">520-494-1090</a></div>
+                <div><span class="k">Hours</span><span class="v">[HOURS]</span></div>
+              </div>
+              <div class="loc-cta">
+                <a href="#" class="btn btn-md btn-gold only-d">Request at this office</a>
+                <a href="tel:5208006662" class="btn btn-md btn-gold only-m">Call to book</a>
+                <a href="https://www.google.com/maps/search/?api=1&amp;query=21300+N+John+Wayne+Parkway+Suite+126+Maricopa+AZ+85139" class="btn btn-md btn-ghost">Get Directions</a>
+              </div>
+            </div>
+          </div></div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="sec split faq" style="background: #FAF8F4;">
+        <div class="split-l">
+          <p class="eyebrow rv" style="color: #7A5C2E;">Questions</p>
+          <h2 class="h h2-s rv d1" style="color: #0B1526;">Frequently asked questions</h2>
+          <p class="body rv d2 only-d" style="font-size: 16px;">Still have a question? Call the office nearest you.</p>
+        </div>
+        <div class="faq-list rv d2">
+          
+            <div class="qa open">
+              <h3 style="margin: 0;">
+                <button type="button" class="qa-b" aria-expanded="true" aria-controls="faq-0">
+                  <span class="h qa-q">Is Agave the same practice as Ahwatukee Foot &amp; Ankle Center?</span>
+                  <span class="qa-i" aria-hidden="true"></span>
+                </button>
+              </h3>
+              <div class="qa-a" id="faq-0"><div><p>Yes. Ahwatukee Foot &amp; Ankle Center and Maricopa Foot &amp; Ankle Physicians are now Agave Foot &amp; Ankle Surgeons — same surgeons, same offices.</p></div></div>
+            </div>
+          
+            <div class="qa">
+              <h3 style="margin: 0;">
+                <button type="button" class="qa-b" aria-expanded="false" aria-controls="faq-1">
+                  <span class="h qa-q">Will I need surgery?</span>
+                  <span class="qa-i" aria-hidden="true"></span>
+                </button>
+              </h3>
+              <div class="qa-a" id="faq-1"><div><p>Not necessarily. Our surgeons consider conservative treatment first and recommend surgery when it offers the clearest path to lasting relief.</p></div></div>
+            </div>
+          
+            <div class="qa">
+              <h3 style="margin: 0;">
+                <button type="button" class="qa-b" aria-expanded="false" aria-controls="faq-2">
+                  <span class="h qa-q">What is standing CT imaging?</span>
+                  <span class="qa-i" aria-hidden="true"></span>
+                </button>
+              </h3>
+              <div class="qa-a" id="faq-2"><div><p>A CT scan taken while you stand, so your foot and ankle are imaged under your own body weight for more accurate diagnosis and planning.</p></div></div>
+            </div>
+          
+            <div class="qa">
+              <h3 style="margin: 0;">
+                <button type="button" class="qa-b" aria-expanded="false" aria-controls="faq-3">
+                  <span class="h qa-q">Which insurance plans do you accept?</span>
+                  <span class="qa-i" aria-hidden="true"></span>
+                </button>
+              </h3>
+              <div class="qa-a" id="faq-3"><div><p>We&#39;re in network with most commercial plans and Medicare. Check the insurance page for your specific plan.</p></div></div>
+            </div>
+          
+            <div class="qa">
+              <h3 style="margin: 0;">
+                <button type="button" class="qa-b" aria-expanded="false" aria-controls="faq-4">
+                  <span class="h qa-q">Where are your offices?</span>
+                  <span class="qa-i" aria-hidden="true"></span>
+                </button>
+              </h3>
+              <div class="qa-a" id="faq-4"><div><p>In Ahwatukee at 15810 S 45th Street, Suite 190, Phoenix, and in Maricopa at 21300 N. John Wayne Parkway, Suite 126.</p></div></div>
+            </div>
+          
+            <div class="qa">
+              <h3 style="margin: 0;">
+                <button type="button" class="qa-b" aria-expanded="false" aria-controls="faq-5">
+                  <span class="h qa-q">How do I access the patient portal?</span>
+                  <span class="qa-i" aria-hidden="true"></span>
+                </button>
+              </h3>
+              <div class="qa-a" id="faq-5"><div><p>Use the Patient Portal button at the top of any page. On a phone, it&#39;s also in the bar at the bottom of the screen.</p></div></div>
+            </div>
+          
+        </div>
+      </section>
+
+      <!-- Insurance -->
+      <div class="ins-w">
+        <div class="ins rv">
+          <div style="display: flex; flex-direction: column; gap: 10px; flex-shrink: 0;">
+            <p class="eyebrow" style="color: #7A5C2E;">Insurance</p>
+            <h2 class="h" style="margin: 0; font-size: 32px; font-weight: 400; color: #0B1526; line-height: 1.15;">In network with most<br class="only-d">commercial plans.</h2>
+          </div>
+          <div class="ins-r">
+            <span class="ins-l">Aetna · Banner Health · Blue Cross Blue Shield · Cigna · Humana · Medicare · UMR · UnitedHealthcare · WellCare · and more</span>
+            <a href="#" class="tl"><span class="u">Check your insurance plan</span> <span class="arr">→</span></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Closing CTA -->
+      <section class="cta">
+        <svg class="draw draw-rv rv" width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="#7A5C2E" stroke-width="1" stroke-linejoin="round" aria-hidden="true"><circle cx="32" cy="32" r="30" pathLength="1"></circle><path pathLength="1" d="M32 52 C29.5 40 30 24 32 10 C34 24 34.5 40 32 52Z"></path><path pathLength="1" d="M32 52 C27 42 23 30 22 16 C27 27 30 40 32 52Z"></path><path pathLength="1" d="M32 52 C37 42 41 30 42 16 C37 27 34 40 32 52Z"></path><path pathLength="1" d="M32 52 C24 46 17 38 13 26 C21 34 27 44 32 52Z"></path><path pathLength="1" d="M32 52 C40 46 47 38 51 26 C43 34 37 44 32 52Z"></path><path pathLength="1" d="M32 52 C24 50 16 46 10 38 C19 42 26 47 32 52Z"></path><path pathLength="1" d="M32 52 C40 50 48 46 54 38 C45 42 38 47 32 52Z"></path></svg>
+        <h2 class="h h2 rv d1" style="color: #0B1526; max-width: 820px; line-height: 1.08;">Talk through your options with a foot and ankle surgeon.</h2>
+        <div class="cta-b rv d2">
+          <a href="#" class="btn btn-navy">Request a Consultation <svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+          <a href="#" class="btn btn-line only-d">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+            Patient Portal
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="foot">
+      <div class="foot-g">
+        <div class="foot-c foot-brand" style="gap: 20px;">
+          <div style="display: flex; align-items: center; gap: 14px;">
+            <svg width="44" height="44" viewBox="0 0 64 64" fill="none" stroke="#B8925A" stroke-width="1.1" stroke-linejoin="round" aria-hidden="true"><circle cx="32" cy="32" r="30"></circle><path d="M32 52 C29.5 40 30 24 32 10 C34 24 34.5 40 32 52Z"></path><path d="M32 52 C27 42 23 30 22 16 C27 27 30 40 32 52Z"></path><path d="M32 52 C37 42 41 30 42 16 C37 27 34 40 32 52Z"></path><path d="M32 52 C24 46 17 38 13 26 C21 34 27 44 32 52Z"></path><path d="M32 52 C40 46 47 38 51 26 C43 34 37 44 32 52Z"></path><path d="M32 52 C24 50 16 46 10 38 C19 42 26 47 32 52Z"></path><path d="M32 52 C40 50 48 46 54 38 C45 42 38 47 32 52Z"></path></svg>
+            <div style="display: flex; flex-direction: column; gap: 3px;">
+              <span class="logo" style="font-size: 26px; letter-spacing: 0.14em; color: #F4EFE6; line-height: 1;">AGAVE</span>
+              <span class="fb-s" style="font-size: 9px; letter-spacing: 0.3em; color: #B8925A; font-weight: 600;">FOOT &amp; ANKLE SURGEONS</span>
+            </div>
+          </div>
+          <span style="font-size: 13px; line-height: 1.6; color: #A9B1BF; max-width: 300px;">Formerly Ahwatukee Foot &amp; Ankle Center and Maricopa Foot &amp; Ankle Physicians.</span>
+        </div>
+        <nav class="foot-c" aria-label="Patients">
+          <span class="eyebrow" style="color: #B8925A; font-size: 11px; padding-bottom: 4px;">Patients</span>
+          <a href="#">Request a Consultation</a>
+          <a href="#">Patient Portal</a>
+          <a href="#">New Patient Forms</a>
+          <a href="#">Insurance</a>
+        </nav>
+        <nav class="foot-c" aria-label="Practice">
+          <span class="eyebrow" style="color: #B8925A; font-size: 11px; padding-bottom: 4px;">Practice</span>
+          <a href="#services">Conditions &amp; Treatments</a>
+          <a href="#surgeons">Our Surgeons</a>
+          <a href="#imaging">Standing CT Imaging</a>
+          <a href="#">Patient Reviews</a>
+          <a href="#">Blog</a>
+        </nav>
+        <div class="foot-c foot-contact">
+          <span class="eyebrow" style="color: #B8925A; font-size: 11px; padding-bottom: 4px;">Contact</span>
+          <span><strong style="color: #F4EFE6;">Ahwatukee</strong> · <a href="tel:4803780485" style="display: inline;">480-378-0485</a></span>
+          <span style="color: #A9B1BF;">15810 S 45th Street, Suite 190, Phoenix, AZ 85048</span>
+          <span style="padding-top: 6px;"><strong style="color: #F4EFE6;">Maricopa</strong> · <a href="tel:5208006662" style="display: inline;">520-800-6662</a></span>
+          <span style="color: #A9B1BF;">21300 N. John Wayne Parkway, Suite 126, Maricopa, AZ 85139</span>
+        </div>
+      </div>
+      <div class="foot-bot">
+        <span>© 2026 Agave Foot &amp; Ankle Surgeons</span>
+        <div style="display: flex; gap: 24px;">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms</a>
+          <a href="#">Accessibility</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Mobile action bar -->
+    <nav class="abar" aria-label="Quick actions">
+      <a href="tel:4803780485">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B8925A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"></path></svg>
+        Call
+      </a>
+      <a href="#">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B8925A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+        Portal
+      </a>
+      <a href="#" class="book">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0B1526" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"></rect><path d="M3 9h18M8 2v4M16 2v4"></path></svg>
+        Book
+      </a>
+    </nav>
+  </div>
+
+  <!-- Menu overlay (compact header) -->
+  <div id="agv-menu" class="mnav" role="dialog" aria-modal="true" aria-label="Menu" aria-hidden="true">
+    <div class="mnav-top">
+      <span class="logo" style="font-size: 22px; letter-spacing: 0.14em; color: #F4EFE6;">AGAVE</span>
+      <button type="button" class="ib" aria-label="Close menu">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+      </button>
+    </div>
+    <div class="mnav-q">
+      <a href="#" class="btn btn-gold" style="height: 52px; font-size: 14px; padding: 0 12px;">Request Consult</a>
+      <a href="#" class="btn btn-ghost" style="height: 52px; font-size: 14px; padding: 0 12px; gap: 8px;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+        Patient Portal
+      </a>
+    </div>
+    <nav class="mnav-l" aria-label="Menu">
+      
+        <a href="#services" class="h ml">Conditions &amp; Treatments <span class="arr" aria-hidden="true">→</span></a>
+      
+        <a href="#surgeons" class="h ml">Surgeons <span class="arr" aria-hidden="true">→</span></a>
+      
+        <a href="#imaging" class="h ml">Imaging <span class="arr" aria-hidden="true">→</span></a>
+      
+        <a href="#" class="h ml">Patients <span class="arr" aria-hidden="true">→</span></a>
+      
+        <a href="#locations" class="h ml">Locations <span class="arr" aria-hidden="true">→</span></a>
+      
+    </nav>
+    <div class="mnav-c">
+      <p class="eyebrow" style="color: #B8925A; padding-bottom: 4px; font-size: 12px;">Call an office</p>
+      <a href="tel:4803780485"><span style="color: #C9CFD9; font-size: 14px;">Ahwatukee · Phoenix</span><span style="color: #F4EFE6; font-size: 16px; font-weight: 700;">480-378-0485</span></a>
+      <a href="tel:5208006662"><span style="color: #C9CFD9; font-size: 14px;">Maricopa</span><span style="color: #F4EFE6; font-size: 16px; font-weight: 700;">520-800-6662</span></a>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
